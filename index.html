@@ -2,12 +2,24 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>Bouncing ball</title>
+  <title>跳ね回るボール</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #canvas_wrapper {
+      width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="mycanvas" width="1200" height="600">
-    Canvasに対応したブラウザを使ってください。
-  </canvas>
+  <div id="canvas_wrapper">
+    <canvas id="mycanvas" width="1200" height="600">
+      Canvasに対応したブラウザを使ってください。
+    </canvas>
+  </div>
   <script>
   (function() {
     'use strict';
@@ -24,17 +36,10 @@
     ctx = canvas.getContext('2d');
 
     function rand(min, max) {
-      // 0-n
-      // Math.floor(Math.random() * (n + 1))
-      // min-max
       return min + Math.floor(Math.random() * (max - min + 1));
     }
 
     function adjustPosition(pos, r, max) {
-      // if (x - r < 0) x = r;
-      // if (y - r < 0) y = r;
-      // if (x + r > canvas.width) x = canvas.width - r;
-      // if (y + r > canvas.height) y = canvas.height - r;
       if (pos - r < 0) {
         return r;
       } else if (pos + r > max) {
@@ -47,8 +52,6 @@
     canvas.addEventListener('click', function(e) {
       var x, y, r;
       var rect;
-      // x = rand(100, 400);
-      // y = rand(100, 200);
       rect = e.target.getBoundingClientRect();
       x = e.clientX - rect.left;
       y = e.clientY - rect.top;
@@ -86,9 +89,6 @@
       this.x += this.vx;
       this.y += this.vy;
     };
-
-    // var ball = new Ball(rand(100, 200), rand(100, 200), rand(10, 50));
-    // ball.draw();
 
     Stage = function() {
       this.update = function() {
