@@ -36,16 +36,8 @@
     canvas = document.getElementById('mycanvas');
     container = document.getElementById('canvas_wrapper');
 
-    sizing();
-
-    function sizing() {
-      canvas.height = container.offsetHeight;
-      canvas.width = container.offsetWidth;
-    }
-
-    window.addEventListener('resize', function() {
-      (!window.requestAnimationFrame) ? setTimeout(sizing, 1200): window.requestAnimationFrame(sizing);
-    });
+    canvas.height = container.offsetHeight;
+    canvas.width = container.offsetWidth;
 
     if (!canvas || !canvas.getContext) return false;
     ctx = canvas.getContext('2d');
